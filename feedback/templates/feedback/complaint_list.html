@@ -1,0 +1,17 @@
+{% extends "feedback/base.html" %}
+
+{% block content %}
+<h1>Complaints list</h1>
+
+{% for c in complaints %}
+    <div>
+        <h3>{{ c.title }}</h3>
+        <p>Category: {{ c.category.name }}</p>
+        <p>Status: {{ c.status }}</p>
+        <hr>
+    </div>
+{% empty %}
+    <p>No complaints</p>
+{% endfor %}
+{% endblock %}
+
