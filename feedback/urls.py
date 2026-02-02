@@ -1,7 +1,9 @@
 from django.urls import path
-from .views import complaint_list, feedback_api
+from . import views
 
 urlpatterns = [
-    path("", complaint_list, name="complaint_list"),
-    path("api/", feedback_api, name="feedback_api"),
+    path("", views.complaint_list, name="complaint_list"),
+    path("complaints/<int:pk>/", views.complaint_detail, name="complaint_detail"),
+    path("complaints/create/", views.complaint_create, name="complaint_create"),
 ]
+

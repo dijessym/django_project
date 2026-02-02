@@ -1,0 +1,13 @@
+{% extends "feedback/base.html" %}
+
+{% block content %}
+<h1>Create complaint</h1>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Save</button>
+</form>
+
+<a href="{% url 'complaint_list' %}">Cancel</a>
+{% endblock %}

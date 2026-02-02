@@ -1,42 +1,22 @@
-from django.shortcuts import render
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-import json
-
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Complaint
-
+from .forms import ComplaintForm
 
 def complaint_list(request):
-    complaints = Complaint.objects.select_related("category").all()
-    return render(
-        request,
-        "feedback/complaint_list.html",
-        {"complaints": complaints},
-    )
+    complaints = Complaint.objects.all()
+    return render(request, "feedback/complaint_list.html", {"complaints": complaints})
 
+def complaint_detail(request, pk):
+    complaint = get_object_or_404(Complaint, pk=pk)
+    return render(request, "feedback/complaint_detail.html", {"complaint": complaint})
 
-@csrf_exempt
-def feedback_api(request):
-    if request.method == "GET":
-        complaints = Complaint.objects.select_related("category").all()
-        data = [
-            {
-                "id": c.id,
-                "title": c.title,
-                "description": c.description,
-                "category": c.category.name,
-                "status": c.status,
-            }
-            for c in complaints
-        ]
-        return JsonResponse(data, safe=False)
-
+def complaint_create(request):
     if request.method == "POST":
-        body = json.loads(request.body)
-        c = Complaint.objects.create(
-            title=body["title"],
-            description=body["description"],
-            category_id=body["category_id"],
-            status="open",
-        )
-        return JsonResponse({"message": "Created", "id": c.id})
+        form = ComplaintForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("complaint_list")
+    else:
+        form = ComplaintForm()
+    return render(request, "feedback/complaint_create.html", {"form": form})
+

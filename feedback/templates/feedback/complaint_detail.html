@@ -1,0 +1,15 @@
+{% extends "feedback/base.html" %}
+
+{% block content %}
+<h1>{{ complaint.title }}</h1>
+
+<p><b>Description:</b> {{ complaint.description }}</p>
+
+{% if complaint.status == "resolved" %}
+  <p>✅ Status: Resolved</p>
+{% else %}
+  <p>⏳ Status: Pending</p>
+{% endif %}
+
+<a href="{% url 'complaint_list' %}">← Back</a>
+{% endblock %}

@@ -1,17 +1,24 @@
 {% extends "feedback/base.html" %}
 
 {% block content %}
-<h1>Complaints list</h1>
+<h1>Complaint list</h1>
 
-{% for c in complaints %}
-    <div>
-        <h3>{{ c.title }}</h3>
-        <p>Category: {{ c.category.name }}</p>
-        <p>Status: {{ c.status }}</p>
-        <hr>
-    </div>
-{% empty %}
-    <p>No complaints</p>
-{% endfor %}
+{% if complaints %}
+  <ul>
+    {% for c in complaints %}
+      <li>
+        <a href="{% url 'complaint_detail' c.id %}">{{ c.title }}</a>
+        {% if c.status == "resolved" %}
+          ✅ Resolved
+        {% else %}
+          ⏳ Pending
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No complaints yet.</p>
+{% endif %}
+
 {% endblock %}
 
