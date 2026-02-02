@@ -1,14 +1,82 @@
+/* ===== GENERAL ===== */
 body {
-    font-family: Arial, sans-serif;
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
     background-color: #f4f6f8;
-    margin: 20px;
 }
 
-.complaint {
-    background-color: white;
-    padding: 15px;
+/* ===== HEADER ===== */
+header {
+    background: linear-gradient(90deg, #2563eb, #1e40af);
+    color: white;
+    padding: 20px;
+}
+
+header h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+/* ===== NAVIGATION ===== */
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: #e0e7ff;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ===== MAIN CONTENT ===== */
+main {
+    padding: 30px;
+}
+
+/* ===== TITLES ===== */
+h1, h2 {
+    color: #1f2937;
+}
+
+/* ===== COMPLAINT LIST ===== */
+ul {
+    list-style: none;
+    padding: 0;
+    max-width: 700px;
+}
+
+ul li {
+    background: white;
+    padding: 16px 20px;
     margin-bottom: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+/* ===== LINKS INSIDE LIST ===== */
+ul li a {
+    font-weight: 600;
+    color: #2563eb;
+    text-decoration: none;
+}
+
+ul li a:hover {
+    text-decoration: underline;
+}
+
+/* ===== STATUS TEXT ===== */
+.status {
+    font-size: 14px;
+    font-weight: bold;
+    color: #d97706;
+}
