@@ -96,6 +96,7 @@ DATABASES = {
         conn_max_age=600
     )
 }
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Password validation

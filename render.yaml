@@ -2,5 +2,10 @@ services:
   - type: web
     name: django-project
     env: python
-    buildCommand: "./build.sh"
-    startCommand: "gunicorn dproject.wsgi:application"
+    buildCommand: bash build.sh
+    startCommand: gunicorn dproject.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: dproject.settings
+      - key: PYTHON_VERSION
+        value: 3.11.9
