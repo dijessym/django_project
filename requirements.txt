@@ -1,3 +1,5 @@
-Django
+dj-database-url
+psycopg[binary]
 gunicorn
-djangorestframework
+whitenoise
+
