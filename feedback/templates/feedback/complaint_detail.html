@@ -1,15 +1,30 @@
 {% extends "feedback/base.html" %}
 
 {% block content %}
-<h1>{{ complaint.title }}</h1>
+<section class="page-hero">
+  <div>
+    <h1>{{ complaint.title }}</h1>
+    <p class="muted">Complaint details and current status.</p>
+  </div>
+  <div class="hero-actions">
+    <a class="btn btn-ghost" href="{% url 'complaint_list' %}">&#8592; Back</a>
+    <a class="btn btn-primary" href="{% url 'complaint_create' %}">New complaint</a>
+  </div>
+</section>
 
-<p><b>Description:</b> {{ complaint.description }}</p>
+<div class="card detail-card">
+  <div class="detail-row">
+    <span class="detail-label">Description</span>
+    <p class="detail-value">{{ complaint.description }}</p>
+  </div>
 
-{% if complaint.status == "resolved" %}
-  <p>✅ Status: Resolved</p>
-{% else %}
-  <p>⏳ Status: Pending</p>
-{% endif %}
-
-<a href="{% url 'complaint_list' %}">← Back</a>
+  <div class="detail-row">
+    <span class="detail-label">Status</span>
+    {% if complaint.status == "resolved" %}
+      <span class="status-badge status-ok">&#10003; Resolved</span>
+    {% else %}
+      <span class="status-badge status-pending">&#9203; Pending</span>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}

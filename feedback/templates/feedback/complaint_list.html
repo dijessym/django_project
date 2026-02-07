@@ -1,24 +1,36 @@
 {% extends "feedback/base.html" %}
 
 {% block content %}
-<h1>Complaint list</h1>
+<section class="page-hero">
+  <div>
+    <h1>Complaint list</h1>
+    <p class="muted">Review recent feedback and update status in one place.</p>
+  </div>
+  <a class="btn btn-primary" href="{% url 'complaint_create' %}">New complaint</a>
+</section>
 
 {% if complaints %}
-  <ul>
+  <ul class="list">
     {% for c in complaints %}
-      <li>
-        <a href="{% url 'complaint_detail' c.id %}">{{ c.title }}</a>
+      <li class="list-item">
+        <div class="item-main">
+          <a class="item-title" href="{% url 'complaint_detail' c.id %}">{{ c.title }}</a>
+          <span class="item-meta">ID #{{ c.id }}</span>
+        </div>
         {% if c.status == "resolved" %}
-          ✅ Resolved
+          <span class="status-badge status-ok">&#10003; Resolved</span>
         {% else %}
-          ⏳ Pending
+          <span class="status-badge status-pending">&#9203; Pending</span>
         {% endif %}
       </li>
     {% endfor %}
   </ul>
 {% else %}
-  <p>No complaints yet.</p>
+  <div class="card empty-state">
+    <h3>No complaints yet</h3>
+    <p class="muted">Create the first complaint to get started.</p>
+    <a class="btn btn-primary" href="{% url 'complaint_create' %}">Create complaint</a>
+  </div>
 {% endif %}
 
 {% endblock %}
-

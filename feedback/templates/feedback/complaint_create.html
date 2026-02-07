@@ -1,13 +1,22 @@
 {% extends "feedback/base.html" %}
 
 {% block content %}
-<h1>Create complaint</h1>
+<section class="page-hero">
+  <div>
+    <h1>Create complaint</h1>
+    <p class="muted">Tell us what happened and we will follow up.</p>
+  </div>
+  <a class="btn btn-ghost" href="{% url 'complaint_list' %}">&#8592; Back</a>
+</section>
 
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Save</button>
-</form>
-
-<a href="{% url 'complaint_list' %}">Cancel</a>
+<div class="card form-card">
+  <form method="post" class="form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">Save</button>
+      <a class="btn btn-ghost" href="{% url 'complaint_list' %}">Cancel</a>
+    </div>
+  </form>
+</div>
 {% endblock %}

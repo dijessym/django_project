@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Feedback System</title>
 
     <!-- CSS -->
@@ -11,18 +12,28 @@
 
 <body>
 
-<header>
-    <h2>Feedback System</h2>
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="brand">
+            <div class="brand-mark">FS</div>
+            <div class="brand-text">
+                <h2>Feedback System</h2>
+                <p>Track, review, resolve</p>
+            </div>
+        </div>
 
-    <nav>
-        <a href="{% url 'complaint_list' %}">Complaints</a>
-        <a href="{% url 'complaint_create' %}">Create</a>
-    </nav>
+        <nav class="nav">
+            <a class="nav-link" href="{% url 'complaint_list' %}">Complaints</a>
+            <a class="btn btn-primary" href="{% url 'complaint_create' %}">Create</a>
+        </nav>
+    </div>
 </header>
 
-<main>
-    {% block content %}
-    {% endblock %}
+<main class="page">
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
 </main>
 
 </body>
